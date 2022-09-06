@@ -1,17 +1,5 @@
-header {
-    background-color: rgb(23, 183, 130);
-    padding: 30px;
-}
-
 h1 {
     text-align: center;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    background-color: rgb(44, 237, 89);
-    height: 600px;
 }
 
 main select {

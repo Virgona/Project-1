@@ -4,23 +4,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>Document</title>
+    <section class="hero is-link">
+      <div class="hero-body">
+        <p class="title">Movies Project</p>
+        <p class="subtitle">
+          This is our movies project, where you can quickly find a selection of
+          movies based on your preferences
+        </p>
+      </div>
+    </section>
   </head>
 
   <body>
     <header>
-      <h1>Whats on?</h1>
+      <section class="hero is-success">
+        <div class="hero-body">
+          <p class="subtitle">What's on?</p>
+        </div>
+      </section>
     </header>
     <main>
-      <select name="Genre" id="dropDown">
-        <option value="" disabled selected hidden>Select Genre</option>
-        <option>Comedy</option>
-        <option>Action</option>
-        <option>Horror</option>
-        <option>Drama</option>
-        <option>Fantasy</option>
-      </select>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <select name="genre" placeholder="Select Genre">
+              <option value="Select Genre" style="display: none">
+                Select Genre
+              </option>
+              <option value="35">Comedy</option>
+              <option value="28">Action</option>
+              <option value="27">Horror</option>
+              <option value="18">Drama</option>
+              <option value="14">Fantasy</option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">Choose</button>
+        </div>
+      </div>
     </main>
 
     <script src="./assets/script.js"></script>
