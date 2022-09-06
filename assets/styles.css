@@ -1,0 +1,23 @@
+header {
+    background-color: rgb(23, 183, 130);
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(44, 237, 89);
+    height: 600px;
+}
+
+main select {
+    padding: 20px;
+    font-size: 15px;
+    background-color: rgb(62, 146, 62);
+    border-radius: 10px;
+    height: 60px;
+}
