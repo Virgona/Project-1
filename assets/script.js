@@ -18,3 +18,5 @@ $("button").on("click", function (event) {
   console.log(selectedGenre);
   $("#selectedGenre").text(selectedGenre);
 });
+
+function renderTiles() {}
