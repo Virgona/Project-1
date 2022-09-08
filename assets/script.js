@@ -1,6 +1,13 @@
 var selectedGenre;
 var selectedID;
-var movieslist = [];
+var moviesList = [];
+var moviesData = [
+  {
+    title: "",
+    synopsis: "",
+    poster: "",
+  },
+];
 
 $("button").on("click", function (event) {
   event.preventDefault();
@@ -8,9 +15,10 @@ $("button").on("click", function (event) {
   selectedID = $("option[value='" + selectedGenre + "']").attr("genreID");
   $("#selectedGenre").text(selectedGenre);
   fetchApi();
-});
 
-function renderTiles() {}
+  moviesData["titles"] = moviesList[0][0][title];
+  console.log(moviesData);
+});
 
 function fetchApi() {
   fetch(
@@ -22,7 +30,7 @@ function fetchApi() {
         console.log(response);
         response.json().then(function (data) {
           console.log(data.results);
-          movieslist = [data.results];
+          moviesList = [data.results];
         });
       } else {
         alert("Error: " + response.statusText);
