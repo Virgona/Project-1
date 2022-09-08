@@ -20,3 +20,21 @@ h2 {
 #tiles {
   margin: 20px;
 }
+
+/* Height of image will be the same size as container and maintain aspect ratio */
+#figure {
+  height: auto;
+}
+
+/* Image will change width to be more proportional to mobile screens */
+@media screen and (max-width: 425px) {
+#figure{
+  width: 96px;
+}
+}
+/* image will change width to be more proportional to larger screens */
+@media screen and (min-width: 1440px) {
+  #figure{
+    width: 200px;
+  }  
+  }
