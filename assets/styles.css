@@ -16,3 +16,7 @@ h2 {
   color: azure;
   height: 30px;
 }
+
+#tiles {
+  margin: 20px;
+}
