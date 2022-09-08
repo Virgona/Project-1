@@ -1,24 +1,25 @@
 var selectedGenre;
 var selectedID;
 var moviesList = [];
-var moviesData = [
-  {
-    title: "",
-    synopsis: "",
-    poster: "",
-  },
-];
+var moviesData = [];
 
+// Button event
 $("button").on("click", function (event) {
   event.preventDefault();
-  selectedGenre = $("select").val();
-  selectedID = $("option[value='" + selectedGenre + "']").attr("genreID");
-  $("#selectedGenre").text(selectedGenre);
-  fetchApi();
-
-  moviesData["titles"] = moviesList[0][0][title];
-  console.log(moviesData);
+  selectedGenre = $("select").val();   // Get genre value name from selection
+  selectedID = $("option[value='" + selectedGenre + "']").attr("genreID"); //Selects genreID with the correct ID attribute as per themovieAPI genre ID
+  $("#selectedGenre").text(selectedGenre); // Render the selected genre text
+  fetchApi(); //Runs fetch API
 });
+
+function rendermovies () {
+  moviesData['title'] = moviesList[0][0]['title'];
+  moviesData['poster'] = moviesList[0][0]['poster_path'];
+  moviesData['synop'] = moviesList[0][0]['overview'];
+  $('strong').append(moviesData['title']);
+  $('#tile0').append(moviesData['synop']);
+  $('img').attr('src', 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + (moviesData['poster']));
+}
 
 function fetchApi() {
   fetch(
@@ -31,6 +32,8 @@ function fetchApi() {
         response.json().then(function (data) {
           console.log(data.results);
           moviesList = [data.results];
+          console.log(moviesData);
+          rendermovies();
         });
       } else {
         alert("Error: " + response.statusText);
