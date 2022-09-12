@@ -1,62 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <title>Document</title>
-    <section class="hero is-link">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./assets/icons8-popcorn-48.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <title>Whats on?</title>
+  <section class="hero is-link">
+    <div class="hero-body">
+      <p class="title">Movies Project</p>
+      <p class="subtitle">
+        This is our movies project, where you can quickly find a selection of
+        movies based on your preferences
+      </p>
+    </div>
+  </section>
+</head>
+
+<body>
+  <header>
+    <section class="hero is-success">
       <div class="hero-body">
-        <p class="title">Movies Project</p>
-        <p class="subtitle">
-          This is our movies project, where you can quickly find a selection of
-          movies based on your preferences
-        </p>
+        <p class="subtitle">What's on?</p>
       </div>
     </section>
-  </head>
-
-  <body>
-    <header>
-      <section class="hero is-success">
-        <div class="hero-body">
-          <p class="subtitle">What's on?</p>
-        </div>
-      </section>
-    </header>
-    <main>
-      <div class="field has-addons">
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <select name="genre" placeholder="Select Genre">
-              <option value="Select Genre" style="display: none">
-                Select Genre
-              </option>
-              <option genreID="35" value="Comedy!!">Comedy!!</option>
-              <option genreID="28" value="Action!!">Action!!</option>
-              <option genreID="27" value="Horror!!">Horror!!</option>
-              <option genreID="18" value="Drama!!">Drama!!</option>
-              <option genreID="14" value="Fantasy!">Fantasy!!</option>
-            </select>
-          </div>
-        </div>
-        <div class="control">
-          <button type="submit" class="button is-primary">Choose</button>
+  </header>
+  <main>
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <div class="select is-fullwidth">
+          <select name="genre" placeholder="Select Genre">
+            <option value="Select Genre" style="display: none">
+              Select Genre
+            </option>
+            <option genreID="35" value="Comedy!!">Comedy!!</option>
+            <option genreID="28" value="Action!!">Action!!</option>
+            <option genreID="27" value="Horror!!">Horror!!</option>
+            <option genreID="18" value="Drama!!">Drama!!</option>
+            <option genreID="14" value="Fantasy!">Fantasy!!</option>
+          </select>
         </div>
       </div>
-    </main>
-
-    <div>
-      <h2>Your choice of Genre is: <span id="selectedGenre"></span></h2>
+      <div class="control">
+        <button type="submit" class="button is-primary">Choose</button>
+      </div>
     </div>
+  </main>
 
-    <div class = "tiles-content">
-    </div>
+  <div>
+    <h2>Your choice of Genre is: <span id="selectedGenre"></span></h2>
+  </div>
+
+  <div class="tiles-content">
+  </div>
 
     <div id="modal-js-example" class="modal">
       <div class="modal-background"></div>
@@ -75,12 +74,10 @@
       Open JS example modal
     </button>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"
-      integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./assets/script.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"
+    integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./assets/script.js"></script>
+</body>
+
 </html>
