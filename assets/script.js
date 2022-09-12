@@ -99,6 +99,7 @@ function fetchApi() {
     });
 }
 
+function modalfunction () {
   document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
@@ -143,3 +144,6 @@ function fetchApi() {
       }
     });
   });
+}
+
+modalfunction();
