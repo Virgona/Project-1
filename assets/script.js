@@ -3,6 +3,7 @@ var selectedID;
 var moviesList = [];
 var moviesData = [];
 var ticker = false;
+var titlefetch;
 
 // Button event
 $(".button").on("click", function (event) {
@@ -72,7 +73,6 @@ function rendermovies () { // Function to render movies into website
     $('#strong'+ i).append(moviesData['title']);
     $('#tile' + i).append(moviesData['synop']);
     $('#img' + i).attr('src', 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + (moviesData['poster']));
-    // $('#img' + i).attr('class', 'js-modal-trigger');
   }}
 }
 
@@ -122,6 +122,10 @@ function modalfunction () {
       var $target = document.getElementById(modal);
   
       $trigger.addEventListener('click', () => {
+        targetElID = $target.id.slice(-1);
+        titlefetch = "https://api-gate2.movieglu.com/filmLiveSearch/?query=" + localStorage.getItem('title' + $target.id.slice(-1)).replace(/ /g, "+").replace(/"/g, "").trim() + "&n=1";
+        console.log(titlefetch);
+        moviegluID();
         openModal($target);
       });
     });
@@ -147,3 +151,55 @@ function modalfunction () {
 }
 
 modalfunction();
+
+function moviegluID () {
+
+var settings = {
+  "url": titlefetch,
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+  "api-version": "v200",
+  "Authorization": "Basic U1RVRF8yMzc6aExTQTlmdFd2OWJ4",
+  "client": "STUD_237",
+  "x-api-key": "NOknZteJRs2F6zLTAxqRF8xzqWOSORv44CTg3r76",
+  "device-datetime": moment().format(),
+  "territory": "US",
+  },
+  };
+  
+  $.ajax(settings).done(function (response) {
+  console.log(response);
+  movieResponse = [response];
+  moviesID = movieResponse[0]['films'][0]['film_id'];
+  console.log(moviesID);
+  movietrailer();
+  });
+}
+
+function movietrailer () {
+
+  var settings = {
+    "url": "https://api-gate2.movieglu.com/trailers/?film_id=" + moviesID,
+    "method": "GET",
+    "timeout": 0,
+    "headers": {
+    "api-version": "v200",
+    "Authorization": "Basic U1RVRF8yMzc6aExTQTlmdFd2OWJ4",
+    "client": "STUD_237",
+    "x-api-key": "NOknZteJRs2F6zLTAxqRF8xzqWOSORv44CTg3r76",
+    "device-datetime": moment().format(),
+    "territory": "US",
+    },
+    };
+    
+    $.ajax(settings).then(function (response) {
+    trailerResp = [response];
+    trailerUrl = trailerResp[0]['trailers']['high'][0]['film_trailer'];
+    renderUrl(); 
+});
+  }
+
+  function renderUrl () {
+    document.getElementById(targetElID).setAttribute('src', trailerUrl);
+  }
