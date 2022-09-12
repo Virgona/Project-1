@@ -25,7 +25,7 @@ $(".button").on("click", function (event) {
         moviesData['title'] = JSON.parse(localStorage.getItem('title' + i));
         moviesData['poster'] = JSON.parse(localStorage.getItem('poster_path' + i));
         moviesData['synop'] = JSON.parse(localStorage.getItem('overview' + i));
-        $('.tiles-content').append("<div class ='box' id = 'tiles'> <article class='media'> <div class='media-left'><figure class='js-modal-trigger image is-128x128' data-target='modal-js-example' id='figure'><img id='img" + i + "' alt='Image'></figure></div><div class='media-content'><div class='content'><p id='tile" + i + "'><strong id='strong" + i + "'></strong> <br></p></div></div></article></div>");
+        $('.tiles-content').append("<div class ='box' id = 'tiles'> <article class='media'> <div class='media-left'><figure class='js-modal-trigger image is-128x128' data-target='modal-js-example" + i + "' id='figure'><img id='img" + i + "' alt='Image'></figure></div><div class='media-content'><div class='content'><p id='tile" + i + "'><strong id='strong" + i + "'></strong> <br></p></div></div></article></div>");
         $('#strong'+ i).append(moviesData['title']);
         $('#tile' + i).append(moviesData['synop']);
         $('#img' + i).attr('src', 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + (moviesData['poster']));
