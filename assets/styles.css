@@ -17,6 +17,10 @@ h2 {
   height: 30px;
 }
 
+.error {
+  text-align: center;
+}
+
 #tiles {
   margin: 20px;
 }
