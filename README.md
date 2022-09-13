@@ -8,7 +8,6 @@ Our approach is to create a website that allows users to search for movies based
 
 ## Table of Contents
 
-
 - [Installation](#installation)
 - [Credits](#credits)
 - [License](#license)
@@ -17,7 +16,7 @@ Our approach is to create a website that allows users to search for movies based
 
 No installation is required. The code is currently deployed in github pages! The end result can be appreciated by just accessing the page.
 
-[Project-1](https://github.com/Virgona/Project-1/)
+[Whats on](https://github.com/Virgona/Whats-on/)
 
 ## Credits
 
@@ -32,6 +31,8 @@ In this instance I only used code provided by the bootcamp and the following doc
 - [Jquery API](https://api.jquery.com/)
 
 - [W3Schools](https://www.w3schools.com/jquery/)
+
+## Screenshots
 
 ## License
 
