@@ -185,6 +185,10 @@ function moviegluID() {
     moviesID = movieResponse[0]['films'][0]['film_id'];
     console.log(moviesID);
     movieTrailer();
+
+  }).fail(function () {
+    renderError();
+    console.log("error");
   });
 }
 
@@ -207,14 +211,24 @@ function movieTrailer() {
     },
   };
 
+
   $.ajax(settings).then(function (response) {
     trailerResp = [response];
     trailerUrl = trailerResp[0]['trailers']['high'][0]['film_trailer'];
     console.log(trailerUrl);
     renderUrl();
+
+  }).fail(function () {
+    renderError();
+    console.log("error");
   });
 }
 
 function renderUrl() {
-  document.getElementById(targetElID).setAttribute('src', trailerUrl);
+  $('#' + targetElID).replaceWith("<div id='" + targetElID + "' class='modal-content'></div>");
+  $('#' + targetElID).append("<video src='" + trailerUrl + "' width='640' height='360' class='modal-close is-large'></video>");
+}
+function renderError() {
+  $('#' + targetElID).replaceWith("<div id='" + targetElID + "' class='modal-content'></div>");
+  $('#' + targetElID).append('<h2> You fucked up buddy</h2>');
 }
