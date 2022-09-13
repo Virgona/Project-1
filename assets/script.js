@@ -168,12 +168,14 @@ function moviegluID() {
     "timeout": 0,
     "headers": {
       "api-version": "v200",
-      "geolocation": "-22.0;14.0",
-      "Authorization": "Basic VVNZRF9YWDoxMDc1dG42bEZHWEc=",
+      "geolocation": "33.0;151.0",
+      "Authorization": "Basic VVNZRDpUVzkzek5mcXJrdzU=",
       "client": "USYD",
-      "x-api-key": "NOknZteJRs2F6zLTAxqRF8xzqWOSORv44CTg3r76",
-      "device-datetime": moment().format(),
-      "territory": "XX",
+      "x-api-key": "tJvVDxsFgg2DKbIS4hxjX8Cew0dnPf0T9SDeFfWz",
+      "device-datetime": "2022-09-13T19:42:58+10:00",
+      "territory": "AU",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
@@ -197,9 +199,11 @@ function movieTrailer() {
       "geolocation": "-22.0;14.0",
       "Authorization": "Basic VVNZRF9YWDoxMDc1dG42bEZHWEc=",
       "client": "USYD",
-      "x-api-key": "NOknZteJRs2F6zLTAxqRF8xzqWOSORv44CTg3r76",
-      "device-datetime": moment().format(),
+      "x-api-key": "Eety63pHfI2z23yh7XBKi45GRhcR7wz569n3QLe1",
+      "device-datetime": "2022-09-13T19:42:58+10:00",
       "territory": "XX",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
