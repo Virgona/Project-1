@@ -21,6 +21,14 @@ h2 {
   margin: 20px;
 }
 
+/*providing feedback to the user, helping them understand the images can be interacted with*/
+img:hover {
+  opacity: 0.5;
+  transition: 0.2s;
+  cursor: pointer;
+
+}
+
 /* Height of image will be the same size as container and maintain aspect ratio */
 #figure {
   height: auto;
@@ -28,13 +36,14 @@ h2 {
 
 /* Image will change width to be more proportional to mobile screens */
 @media screen and (max-width: 425px) {
-#figure{
-  width: 96px;
+  #figure {
+    width: 96px;
+  }
 }
-}
+
 /* image will change width to be more proportional to larger screens */
 @media screen and (min-width: 1440px) {
-  #figure{
+  #figure {
     width: 200px;
-  }  
   }
+}
