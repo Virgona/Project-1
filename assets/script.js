@@ -4,6 +4,10 @@ var moviesList = [];
 var moviesData = [];
 var ticker = false;
 var titleFetch;
+var moviegluAPIkey = "tGC8sHxTWs2zhPvpneN4gaHkJIVdO0VFavN5tDmS";
+var moviegluAPIAuth = "Basic VVNZRF8wOjAyamI1UnpVakZGUA=="
+var moviegluClient = "USYD_0"
+// var trailerUrl = "https://trailer.movieglu.com/253705_uk_high.mp4"; // TESTING TESTING: Un-comment here for testing
 
 // Button event
 $(".button").on("click", function (event) {
@@ -19,6 +23,10 @@ $(".button").on("click", function (event) {
 function init() {
   // Get stored tasks from localStorage
   var storedTitles = JSON.parse(localStorage.getItem("title0"));
+
+  for (var i = 0; i < 20; i++) {
+    $('.mod').append("<div id='modal-js-example" + i + "' class='modal'><div class='modal-background'></div><div id='" + i + "' class='modal-content'></div><button class='modal-close is-large' aria-label='close'></button></div>")
+  }
 
   // If tasks were retrieved from localStorage, update the tasks array to it
   if (storedTitles !== null) {
@@ -84,18 +92,15 @@ function renderMovies() { // Function to render movies into website
   }
 }
 
-function fetchApi() {
+function fetchApi() { //This API fetches latest movies list based off their genre.
   fetch(
     "https://api.themoviedb.org/3/discover/movie?api_key=c23913981d1239a82bcee942628971b5&with_genres=" +
     selectedID
   )
     .then(function (response) {
       if (response.ok) {
-        console.log(response);
         response.json().then(function (data) {
-          console.log(data.results);
           moviesList = [data.results];
-          console.log(moviesData);
           renderMovies();
         });
       } else {
@@ -129,11 +134,15 @@ function modalFunction() {
       const modal = $trigger.dataset.target;
       var $target = document.getElementById(modal);
 
-      $trigger.addEventListener('click', () => {
-        targetElID = $target.id.slice(-1);
-        titleFetch = "https://api-gate2.movieglu.com/filmLiveSearch/?query=" + localStorage.getItem('title' + $target.id.slice(-1)).replace(/ /g, "+").replace(/"/g, "").trim() + "&n=1";
-        console.log(titleFetch);
-        moviegluID();
+      $trigger.addEventListener('click', () => { // This is the modal trigger. When you click event listener, the below code will run.
+        targetElID = $target.id.slice(-2); //This is to set the correct elementID, before it was only slicing the last character of the modal class string. So anything above 9 was being read incorrectly.
+        if (isNaN(targetElID)) {
+          targetElID = $target.id.slice(-1);
+        } else {
+          targetElID = $target.id.slice(-2);
+        };
+        titleFetch = "https://api-gate2.movieglu.com/filmLiveSearch/?query=" + localStorage.getItem('title' + $target.id.slice(-1)).replace(/ /g, "+").replace(/"/g, "").trim() + "&n=1"; // This line creates the Url for movieglu API fetch. Used in moviegluID function.
+        moviegluID(); // TESTING TESTING: comment THIS LINE for testing
         openModal($target);
       });
     });
@@ -151,16 +160,16 @@ function modalFunction() {
     document.addEventListener('keydown', (event) => {
       const e = event || window.event;
 
-      if (e.keyCode === 27) { // Escape key
+      if (e.key === "Escape") { // Escape key
         closeAllModals();
       }
     });
   });
 }
 
-modalFunction();
+modalFunction(); //Runs modal function listener on page load
 
-function moviegluID() {
+function moviegluID() { // This function will fetch the movie ID from movieglu. Movie ID is needed to get the correct trailer. This only runs on click event to save fetch quota.
 
   var settings = {
     "url": titleFetch,
@@ -169,9 +178,9 @@ function moviegluID() {
     "headers": {
       "api-version": "v200",
       "geolocation": "33.0;151.0",
-      "Authorization": "Basic VVNZRDpUVzkzek5mcXJrdzU=",
-      "client": "USYD",
-      "x-api-key": "tJvVDxsFgg2DKbIS4hxjX8Cew0dnPf0T9SDeFfWz",
+      "Authorization": moviegluAPIAuth,
+      "client": moviegluClient,
+      "x-api-key": moviegluAPIkey,
       "device-datetime": "2022-09-13T19:42:58+10:00",
       "territory": "AU",
       "Content-Type": "application/json",
@@ -179,20 +188,17 @@ function moviegluID() {
     },
   };
 
-  $.ajax(settings).done(function (response) {
-    console.log(response);
+  $.ajax(settings).done(function (response) { 
     movieResponse = [response];
-    moviesID = movieResponse[0]['films'][0]['film_id'];
-    console.log(moviesID);
-    movieTrailer();
+    moviesID = movieResponse[0]['films'][0]['film_id']; //sets moviesID variable to response from api
+    movieTrailer(); //Run function below to get trailer based off moviesID
 
   }).fail(function () {
-    renderError();
-    console.log("error");
+    renderError(); // In case this fetch is un-sucessful, this will render an error message in the modal.
   });
 }
 
-function movieTrailer() {
+function movieTrailer() { // This function uses moviesID to fetch the correct trailer from movieglu API
 
   var settings = {
     "url": "https://api-gate2.movieglu.com/trailers/?film_id=" + moviesID,
@@ -200,12 +206,12 @@ function movieTrailer() {
     "timeout": 0,
     "headers": {
       "api-version": "v200",
-      "geolocation": "-22.0;14.0",
-      "Authorization": "Basic VVNZRF9YWDoxMDc1dG42bEZHWEc=",
-      "client": "USYD",
-      "x-api-key": "Eety63pHfI2z23yh7XBKi45GRhcR7wz569n3QLe1",
+      "geolocation": "33.0;151.0",
+      "Authorization": moviegluAPIAuth,
+      "client": moviegluClient,
+      "x-api-key": moviegluAPIkey,
       "device-datetime": "2022-09-13T19:42:58+10:00",
-      "territory": "XX",
+      "territory": "AU",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
@@ -214,21 +220,19 @@ function movieTrailer() {
 
   $.ajax(settings).then(function (response) {
     trailerResp = [response];
-    trailerUrl = trailerResp[0]['trailers']['high'][0]['film_trailer'];
-    console.log(trailerUrl);
-    renderUrl();
+    trailerUrl = trailerResp[0]['trailers']['high'][0]['film_trailer']; // This is the fetch result with the trailer Url associated
+    renderUrl(); // Renders the url as part of the modal.
 
   }).fail(function () {
-    renderError();
-    console.log("error");
+    renderError(); // In case fetch fails, render fail message to modal.
   });
 }
 
-function renderUrl() {
+function renderUrl() { // Renders modal video based off $target that was clicked
   $('#' + targetElID).replaceWith("<div id='" + targetElID + "' class='modal-content'></div>");
-  $('#' + targetElID).append("<video src='" + trailerUrl + "' width='640' height='360' class='modal-close is-large'></video>");
+  $('#' + targetElID).append("<video src='" + trailerUrl + "' width='640' height='360' controls name='media'></video>");
 }
-function renderError() {
+function renderError() { // Render modal error message based off $target that was clicked
   $('#' + targetElID).replaceWith("<div id='" + targetElID + "' class='modal-content'></div>");
-  $('#' + targetElID).append('<h2> You fucked up buddy</h2>');
+  $('#' + targetElID).append("<p class='box error'>Sorry, we couldn't find any trailers for this movie.</p>");
 }
