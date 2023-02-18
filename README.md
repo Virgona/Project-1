@@ -47,6 +47,14 @@ In the future we hope to add more more metadata options to be selected from. As 
 
 No installation is required. The code is currently deployed in github pages! The end result can be appreciated by just accessing the page. (click below!)
 
+## Usage
+
+1. User loads webpage
+2. User clicks the genre selection button and picks a genre from the menu
+3. User decides a genre and is met with 20 films relevent to their selection to chose from
+4. User clicks the poster image and can watch a trailer for that specific film
+5. User decides to watch the movie!
+
 [Whats on](https://virgona.github.io/Whats-on/)
 
 ## Credits
